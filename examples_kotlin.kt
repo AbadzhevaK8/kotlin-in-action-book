@@ -455,11 +455,79 @@ fun main(args: Array<String>) {
     }
 }
 ==============================================
+package ch02.ex4_4_1_UsingAnInCheck
+
+fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'
+fun isNotDigit(c: Char) = c !in '0'..'9'
+
+fun main(args: Array<String>) {
+    println(isLetter('q'))
+    println(isNotDigit('x'))
+}
 ==============================================
+package ch02.ex5_1_TryCatchAndFinally
 
+import java.io.BufferedReader
+import java.io.StringReader
 
+fun readNumber(reader: BufferedReader): Int? {
+    try {
+        val line = reader.readLine()
+        return Integer.parseInt(line)
+    }
+    catch (e: NumberFormatException) {
+        return null
+    }
+    finally {
+        reader.close()
+    }
+}
 
+fun main(args: Array<String>) {
+    val reader = BufferedReader(StringReader("239"))
+    println(readNumber(reader))
+}
+==============================================
+package ch02.ex5_2_1_TryAsAnExpression
 
+import java.io.BufferedReader
+import java.io.StringReader
+
+fun readNumber(reader: BufferedReader) {
+    val number = try {
+        Integer.parseInt(reader.readLine())
+    } catch (e: NumberFormatException) {
+        return
+    }
+
+    println(number)
+}
+
+fun main(args: Array<String>) {
+    val reader = BufferedReader(StringReader("not a number"))
+    readNumber(reader)
+}
+==============================================
+package ch02.ex5_2_2_TryAsAnExpression1
+
+import java.io.BufferedReader
+import java.io.StringReader
+
+fun readNumber(reader: BufferedReader) {
+    val number = try {
+        Integer.parseInt(reader.readLine())
+    } catch (e: NumberFormatException) {
+        null
+    }
+
+    println(number)
+}
+
+fun main(args: Array<String>) {
+    val reader = BufferedReader(StringReader("not a number"))
+    readNumber(reader)
+}
+==============================================
 
 
 
